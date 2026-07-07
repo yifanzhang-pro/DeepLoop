@@ -1,5 +1,7 @@
 # DeepLoop: Depth Scaling for Looped Transformers
 
+**Authors**: Shuzhen Li, Yifan Zhang, Jiacheng Guo, Quanquan Gu, Mengdi Wang
+
 DeepLoop is a residual-scaling rule for **weight-tied looped Transformers**.
 Looped models increase effective depth by revisiting the same physical blocks,
 and the DeepNorm exponent that stabilizes *untied* depth ($p=1/4$) is no longer
