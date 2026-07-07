@@ -72,7 +72,7 @@ step-by-step instructions.
 ```bibtex
 @article{deeploop2026,
   title  = {DeepLoop: Depth Scaling for Looped Transformers},
-  author = {Li, Shuzhen and others},
+  author = {Li, Shuzhen and Zhang, Yifan and Guo, Jiacheng and Gu, Quanquan and Wang, Mengdi},
   year   = {2026}
 }
 ```
