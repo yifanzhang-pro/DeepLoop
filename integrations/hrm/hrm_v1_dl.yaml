@@ -1,0 +1,31 @@
+name: hrm.hrm_act_v1_dl@HierarchicalReasoningModel_ACTV1
+loss:
+  name: losses@ACTLossHead
+  loss_type: stablemax_cross_entropy
+
+halt_exploration_prob: 0.1
+halt_max_steps: 16
+
+H_cycles: 2
+L_cycles: 2
+
+H_layers: 4
+L_layers: 4
+
+hidden_size: 512
+num_heads: 8  # min(2, hidden_size // 64)
+expansion: 4
+
+puzzle_emb_ndim: ${.hidden_size}
+
+pos_encodings: rope
+
+# DeepLoop core method (Phase 1) on top of HRM:
+# - LoopDeepNorm residual scaling: alpha = (2*M)^p, beta = (8*M)^-p
+# - Input embedding RMSNorm
+# M auto-computed: L_layers*H_cycles*L_cycles + H_layers*H_cycles = 4*2*2 + 4*2 = 24.
+# alpha = (2*24)^0.5 ≈ 6.928
+# beta  = (8*24)^-0.5 ≈ 0.0722
+use_loop_deepnorm: True
+use_input_embed_rmsnorm: True
+loop_deepnorm_p: 0.5

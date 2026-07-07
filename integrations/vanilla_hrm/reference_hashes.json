@@ -1,0 +1,47 @@
+{
+  "_comment": "md5 of the REFERENCE dataset builds. ALL references are canonical under: numpy 2.4.1 + PYTHONHASHSEED=0 (build_from_manifest.py enforces the latter by re-exec). Upstream build_arc_dataset.py iterates a set of (split,subset) string tuples, so without a pinned hash seed the train/test SAVE order \u2014 and therefore the position of the train-split translational-pad RNG draws \u2014 flips on a per-process 50/50 coin, yielding exactly two internally-deterministic builds (identifiers and the entire test split are invariant between the two; only train/{inputs,labels}.npy differ). The ARC-2 test split is what the published-checkpoint eval reads, so K-numbers are identical either way. A build whose hashes differ from these is NOT comparable for training: see h010nf_voting_recompute.md (CLOSED section) for the cross-site incident, and the arc1/arc2 _comment fields for the coin-face history.",
+  "_comment_raw_data": "Exact raw-data submodule commits the reference builds were made from. NOTE ConceptARC: this is NOT the commit pinned by HRM@ac15626 (b22ef52, Nov 2024) \u2014 upstream later fixed an erroneous output grid in corpus/Order/Order5.json (commit 0e67da6, 'Fixed error in demonstration 2 of Order5', Feb 2026; the ONLY content difference, and it is output-only). Our reference arc1 build uses the FIXED data; building from the HRM pin reproduces everything except train/all__labels.npy. build_from_manifest.py verifies these commits before building.",
+  "raw_data_commits": {
+    "dataset/raw-data/ARC-AGI": "399030444e0ab0cc8b4e199870fb20b863846f34",
+    "dataset/raw-data/ARC-AGI-2": "f3283f727488ad98fe575ea6a5ac981e4a188e49",
+    "dataset/raw-data/ConceptARC": "0e67da6af879e4bad3d7cd3c196e8d551b445725"
+  },
+  "arc2": {
+    "output_dir": "data/arc-2-aug-1000",
+    "files": {
+      "identifiers.json": "720d88472d6c2eadf18c82a395418141",
+      "test/dataset.json": "2bf2de55333a4e2d752f269bc0bff8c3",
+      "test/all__inputs.npy": "1a271a6131533ea738f15f31084d8f43",
+      "test/all__labels.npy": "acaaba62c01f2c73cc24c537b42416c4",
+      "test/all__puzzle_identifiers.npy": "12e18a9107ade09dc3f1be3d1d4858ad",
+      "test/all__puzzle_indices.npy": "820f38db8e431341a0417189e52ffc19",
+      "test/all__group_indices.npy": "399ecd9deaec8379ab5f05892f3e9eef",
+      "train/dataset.json": "1234d513cd4ce9658d5892c44af588a9",
+      "train/all__inputs.npy": "ceb71d9b4a7673584ac090d9bb47a2c7",
+      "train/all__labels.npy": "f7b57f497cb38ba4cbd0d8fb6c5c3d96",
+      "train/all__puzzle_identifiers.npy": "13a739d74349a2432eb09c9b255603a4",
+      "train/all__puzzle_indices.npy": "1d30a9f7c3144b90311a8173f9bd34a0",
+      "train/all__group_indices.npy": "742b73e7422ca3353f1ee79261574a60"
+    },
+    "_comment": "Canonical = PYTHONHASHSEED=0 build (test-first save order), verified stable across two independent rebuilds 2026-06-11. The original Jun-2 reference happened to be built on the OTHER coin face (train-first): its train hashes were inputs 0d349adea46e8723a484c3ea7557cafc, labels ee38d067c3e435b8a22d8cf457049310. identifiers + the ENTIRE test split are identical between faces, so all published-checkpoint eval results (K=2=5.00% etc.) are unaffected. No in-house ARC-2 training has used either face's train split."
+  },
+  "arc1": {
+    "_comment": "Canonical = PYTHONHASHSEED=0 build = byte-identical to the ORIGINAL May-3 reference (test-first save order). History: a 2026-06-11 interim commit briefly re-baselined train/{inputs,labels} to the other coin face (inputs 9fa63c9cf6b12d6fdd91697ac723605c, labels a11e48a47db13a16e11f7f7770d42a7d) under a mistaken numpy-version theory; reverted same day once the hash-seed coin was identified and the =0 build reproduced the original hashes twice. numpy is exonerated: 2.4.1 reproduces everything given PYTHONHASHSEED=0. In-house baselines were trained on this canonical build.",
+    "output_dir": "data/arc-aug-1000",
+    "files": {
+      "identifiers.json": "a8cafb9bdab646dab951c28d82700ffe",
+      "test/dataset.json": "f2a3238bae966783b66afacc8074c1df",
+      "test/all__inputs.npy": "a7ea7e4f87ca9c6460d2b16c517d3a83",
+      "test/all__labels.npy": "94194e559878b584aece7abbfcb64450",
+      "test/all__puzzle_identifiers.npy": "1315a4f31ec064f6fd908f6c6967d265",
+      "test/all__puzzle_indices.npy": "75402920646207088e8dcdb740aeb3ea",
+      "test/all__group_indices.npy": "c9b2f921b5836748afbff71c483f9e4b",
+      "train/dataset.json": "9678a84169c48b380dcce6535e4163d0",
+      "train/all__inputs.npy": "d78a6159183ac704f51904f60b049731",
+      "train/all__labels.npy": "5dab51115eb7afe6fe826236be19b725",
+      "train/all__puzzle_identifiers.npy": "311cb01802a96a075cad0e3d8d2be270",
+      "train/all__puzzle_indices.npy": "9cde036f3739aa4e52a5f6734d14582c",
+      "train/all__group_indices.npy": "19a142b3b0c00b1a77bd89c1fc86f634"
+    }
+  }
+}

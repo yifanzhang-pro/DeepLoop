@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+.venv_*/
+env/
+
+# Training artifacts
+output/
+outputs/
+checkpoints/
+data/
+wandb/
+training_records/
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+
+# Logs
+logs/
+*.log
+eval_logs/
+eval_results/
+
+# Caches
+hf_cache/
+.cache/
+*.lock
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
