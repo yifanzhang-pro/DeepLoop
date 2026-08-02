@@ -221,6 +221,7 @@
     <section id="abstract" class="section content-section"><div class="container">
       <h2 class="section-title">Abstract</h2>
       <div class="content">
+        <figure><img src="figures/framework.png" alt="Overview of the DeepLoop framework."><figcaption><strong>Figure 1:</strong> Overview of the DeepLoop framework. A looped Transformer stores $K$ physical blocks once and revisits them for $R$ rounds, giving unrolled depth $N=KR$; each residual sublayer applies $\mathbf{x}_{i+1}=\mathrm{Norm}(\alpha\,\mathbf{x}_i+f_j(\mathbf{x}_i;\phi_j))$, with $\alpha=(2N)^{1/2}$ scaling the skip connection and $\beta=(8N)^{-1/2}$ the per-matrix initialization gain.</figcaption></figure>
         <p><strong>DeepLoop</strong> is a residual-scaling rule for <strong>weight-tied looped Transformers</strong>. Looped models increase effective depth by revisiting the same physical blocks, and the DeepNorm exponent that stabilizes untied depth ($p=1/4$) is no longer the right one. DeepLoop makes the tied-depth effect explicit through a <strong>visit-alignment analysis</strong> and keeps the Post-LN DeepNorm architecture with a single loop-aware scaling rule:</p>
         <div class="math-block">$$\mathbf{x}_{i+1} = \mathrm{Norm}\big(\alpha\,\mathbf{x}_i + f(\mathbf{x}_i)\big), \qquad \alpha = (2N)^{1/2}, \quad \beta = (8N)^{-1/2},$$</div>
         <p>where $N$ is the unrolled (effective) depth and $\beta$ is the initialization gain of each residual-branch output projection. The exponent $p=1/2$ is the aligned-visit threshold; it recovers DeepNorm's $1/4$ when visits decorrelate. The same rule applies to hierarchical recurrent reasoners (HRM), where it improves voted accuracy on ARC-AGI.</p>
@@ -259,6 +260,7 @@
           <div class="column is-6"><div class="pillar-box"><strong>Language modeling (FineWeb-Edu)</strong><p>Multi-GPU training via <code>torchrun</code>, one config file per experiment, comparing looped baselines ($\alpha=\beta=1$) against DeepLoop scaling at matched loop counts, with lm-evaluation-harness runners for downstream evaluation.</p></div></div>
           <div class="column is-6"><div class="pillar-box"><strong>Reasoning (ARC-AGI via HRM)</strong><p>A DeepLoop residual-scaling drop-in for HRM together with p-sweep launchers, plus a hash-verified vanilla-HRM baseline package for reproducible comparison. DeepLoop improves voted accuracy on ARC-AGI.</p></div></div>
         </div>
+        <figure><img src="figures/loop_valloss.png" alt="FineWeb-Edu validation loss at step 100K versus loop count."><figcaption><strong>Figure:</strong> FineWeb-Edu validation loss at step 100K versus loop count $R$. DeepLoop improves over the $\alpha=\beta=1$ looped baseline on both the 124M and 350M backbones, with the gap widening as $R$ grows (2.7514 vs 2.7700 at $R=7$ on 124M, 2.5280 vs 2.5558 on 350M).</figcaption></figure>
         <div class="box"><h3>Repository layout</h3>
 <pre><code>model/                 model definitions (GPT-MHA-RoPE, looped variants, LoopDeepNorm scaling)
 config/                training configurations (FineWeb-Edu LM and ARC-AGI)
