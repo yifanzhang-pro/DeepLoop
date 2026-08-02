@@ -1,5 +1,6 @@
 # DeepLoop: Depth Scaling for Looped Transformers
 
+[![arXiv](https://img.shields.io/badge/arXiv-2607.13491-b31b1b.svg)](https://arxiv.org/abs/2607.13491)
 [![Website](https://img.shields.io/badge/Project-Website-blue)](https://yifanzhang-pro.github.io/DeepLoop)
 [![License](https://img.shields.io/badge/License-Apache_2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -78,6 +79,7 @@ step-by-step instructions.
 @article{deeploop2026,
   title  = {DeepLoop: Depth Scaling for Looped Transformers},
   author = {Li, Shuzhen and Zhang, Yifan and Guo, Jiacheng and Gu, Quanquan and Wang, Mengdi},
+  journal= {arXiv preprint arXiv:2607.13491},
   year   = {2026}
 }
 ```
