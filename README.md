@@ -1,5 +1,8 @@
 # DeepLoop: Depth Scaling for Looped Transformers
 
+[![Website](https://img.shields.io/badge/Project-Website-blue)](https://yifanzhang-pro.github.io/DeepLoop)
+[![License](https://img.shields.io/badge/License-Apache_2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
+
 **Authors**: Shuzhen Li, Yifan Zhang, Jiacheng Guo, Quanquan Gu, Mengdi Wang
 
 DeepLoop is a residual-scaling rule for **weight-tied looped Transformers**.
